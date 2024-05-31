@@ -21,8 +21,10 @@ pipeline {
         
         stage('Checkout Code') {
             when {
-                  branch 'dev main'
+                anyOf {
+                    branch 'dev'
                 }
+            }
             
             steps {
                 // Checkout the specific GitHub repository
