@@ -8,7 +8,7 @@ pipeline {
             when {
                 anyOf {
                     branch 'dev'
-                    branch 'main'
+                    branch 'master'
                 }
             }
             steps {
@@ -23,6 +23,7 @@ pipeline {
             when {
                 anyOf {
                     branch 'dev'
+                    branch 'master'
                 }
             }
             
