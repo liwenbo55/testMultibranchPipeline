@@ -34,6 +34,15 @@ pipeline {
                 sh """
                 cat "hello.txt"
                 """
+                withSonarQubeEnv(credentialsId: 'SONAR_TOKEN') {
+                        sonar-scanner \
+                                  -Dsonar.organization=liwenbo55 \
+                                  -Dsonar.projectKey=liwenbo55_testMultibranchPipeline \
+                                  -Dsonar.sources=. \
+                                  -Dsonar.host.url=https://sonarcloud.io
+                    }
+
+                
             }
         }
             }
