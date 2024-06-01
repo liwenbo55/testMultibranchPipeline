@@ -26,7 +26,6 @@ pipeline {
                     branch 'master'
                 }
             }
-            
             steps {
                 // Checkout the specific GitHub repository
                  // git branch: "$BRANCH_NAME", credentialsId: '71d7fab0-7e3a-4801-87fb-40aacc98bfa6', url: 'https://github.com/liwenbo55/testMultibranchPipeline.git'
@@ -34,16 +33,23 @@ pipeline {
                 sh """
                 cat "hello.txt"
                 """
-                withSonarQubeEnv(credentialsId: 'SONAR_TOKEN') {
-                        sonar-scanner \
-                                  -Dsonar.organization=liwenbo55 \
-                                  -Dsonar.projectKey=liwenbo55_testMultibranchPipeline \
-                                  -Dsonar.sources=. \
-                                  -Dsonar.host.url=https://sonarcloud.io
-                    }
+            }
+        }
 
-                
+        Stage('SonarQube'){
+            when {
+                anyOf {
+                    branch 'dev'
+                    branch 'master'
+                }
             }
+            withSonarQubeEnv() {
+                    sonar-scanner \
+                              -Dsonar.organization=liwenbo55 \
+                              -Dsonar.projectKey=liwenbo55_testMultibranchPipeline \
+                              -Dsonar.sources=. \
+                              -Dsonar.host.url=https://sonarcloud.io
+                }
         }
-            }
-        }
+    }
+}
