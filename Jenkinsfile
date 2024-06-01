@@ -45,10 +45,12 @@ pipeline {
             }
             steps {
                 withSonarQubeEnv(installationName:'sonarCloud') {
+                    sh """
                     sonar-scanner \
-                      -Dsonar.organization='liwenbo55' \
-                      -Dsonar.sources='.' \
-                      -Dsonar.projectKey='liwenbo55_testMultibranchPipeline' \
+                      -Dsonar.organization=liwenbo55 \
+                      -Dsonar.sources=. \
+                      -Dsonar.projectKey= liwenbo55_testMultibranchPipeline \
+                      """
                 }
             }
         }
