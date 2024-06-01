@@ -43,9 +43,11 @@ pipeline {
                     branch 'master'
                 }
             }
-            withSonarQubeEnv(installationName:'sonarCloud') {
+            steps {
+                withSonarQubeEnv(installationName:'sonarCloud') {
                     sh'./mvnw cleanorg.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
                 }
+            }
         }
     }
 }
