@@ -45,7 +45,11 @@ pipeline {
             }
             steps {
                 withSonarQubeEnv(installationName:'sonarCloud') {
-                    sh'./mvnw cleanorg.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
+                    sonar-scanner \
+                      -Dsonar.organization=liwenbo55 \
+                      -Dsonar.projectKey=liwenbo55_testMultibranchPipeline \
+                      -Dsonar.sources=. \
+                      -Dsonar.host.url=https://sonarcloud.io
                 }
             }
         }
