@@ -36,7 +36,7 @@ pipeline {
             }
         }
 
-        Stage('SonarQube'){
+        stage('SonarQube'){
             when {
                 anyOf {
                     branch 'dev'
