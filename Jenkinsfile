@@ -66,14 +66,19 @@ pipeline {
                    //            -Dsonar.sources=. \
                    //            -Dsonar.host.url=https://sonarcloud.io
                    // '''
-                  sh '''${scannerHome}/bin/sonar-scanner \
-                       -Dsonar.projectKey=testlawrence \
-                       -Dsonar.sources=. \
-                       -Dsonar.host.url=http://3.27.123.90:9000
-                       '''
+                  sh '''
+                      ${scannerHome}/bin/sonar-scanner \
+                           -Dsonar.projectKey=testlawrence \
+                           -Dsonar.sources=. \
+                           -Dsonar.host.url=http://3.27.123.90:9000
+                   '''
                 }
             }    
         }
+
+
+
+        
         // stage('SonarQube'){
         //     when {
         //         anyOf {
