@@ -42,14 +42,14 @@ pipeline {
                     scannerHome = tool "SONARSCANNER"
                 }
                 withSonarQubeEnv('sonarCloud') {
-                   // sh '''
-                   // ${scannerHome}/bin/sonar-scanner \
-                   //            -Dsonar.organization=liwenbo55 \
-                   //            -Dsonar.projectKey=testtest1 \
-                   //            -Dsonar.sources=. \
-                   //            -Dsonar.host.url=https://sonarcloud.io
-                   // '''
-                  sh "${scannerHome}/bin/sonar-scanner -Dsonar.organization=liwenbo55 -Dsonar.projectKey=testtest1 -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io"
+                   sh '''
+                   ${scannerHome}/bin/sonar-scanner \
+                              -Dsonar.organization=liwenbo55 \
+                              -Dsonar.projectKey=testtest1 \
+                              -Dsonar.sources=. \
+                              -Dsonar.host.url=https://sonarcloud.io
+                   '''
+                  // sh "${scannerHome}/bin/sonar-scanner -Dsonar.organization=liwenbo55 -Dsonar.projectKey=testtest1 -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io"
                 }
               }
             
