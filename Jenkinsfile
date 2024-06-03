@@ -37,31 +37,28 @@ pipeline {
         }
         stage('SonarQube Analysis') {
 
-            steps {
-                script {
-                    scannerHome = tool "SONARSCANNER"
-                }
-                withSonarQubeEnv('sonarCloud') {
-                   // sh '''
-                   // ${scannerHome}/bin/sonar-scanner \
-                   //            -Dsonar.organization=liwenbo55 \
-                   //            -Dsonar.projectKey=testtest1 \
-                   //            -Dsonar.sources=. \
-                   //            -Dsonar.host.url=https://sonarcloud.io
-                   // '''
-                  // sh "${scannerHome}/bin/sonar-scanner -Dsonar.organization=liwenbo55 -Dsonar.projectKey=testtest1 -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io"
-                   sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=triptribe-frontend \
-                   -Dsonar.projectName=triptribe-frontend \
-                   -Dsonar.projectVersion=1.0 \
-                   -Dsonar.sources=. '''
-                }
-              }
-            
-            // environment {
-            //     scannerHome = tool "SONARSCANNER"
-            // }
             // steps {
-            //    withSonarQubeEnv("sonarCloud") {
+            //     script {
+            //         scannerHome = tool "SONARSCANNER"
+            //     }
+            //     withSonarQubeEnv('sonarCloud') {
+            //        // sh '''
+            //        // ${scannerHome}/bin/sonar-scanner \
+            //        //            -Dsonar.organization=liwenbo55 \
+            //        //            -Dsonar.projectKey=testtest1 \
+            //        //            -Dsonar.sources=. \
+            //        //            -Dsonar.host.url=https://sonarcloud.io
+            //        // '''
+            //       // sh "${scannerHome}/bin/sonar-scanner -Dsonar.organization=liwenbo55 -Dsonar.projectKey=testtest1 -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io"
+
+            //     }
+            //   }
+            
+            environment {
+                scannerHome = tool "SONARSCANNER"
+            }
+            steps {
+               withSonarQubeEnv("sonarCloud") {
                    // sh '''
                    // ${scannerHome}/bin/sonar-scanner \
                    //            -Dsonar.organization=liwenbo55 \
@@ -69,8 +66,12 @@ pipeline {
                    //            -Dsonar.sources=. \
                    //            -Dsonar.host.url=https://sonarcloud.io
                    // '''
-            //     }
-            // }    
+                  sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=triptribe-frontend \
+                       -Dsonar.projectName=triptribe-frontend \
+                       -Dsonar.projectVersion=1.0 \
+                       -Dsonar.sources=. '''
+                }
+            }    
         }
         // stage('SonarQube'){
         //     when {
