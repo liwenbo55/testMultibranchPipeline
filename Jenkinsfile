@@ -68,8 +68,10 @@ pipeline {
                    // '''
                   sh '''
                       ${scannerHome}/bin/sonar-scanner \
-                           -Dsonar.projectKey=testlawrence \
-                           -Dsonar.sources=. 
+                          -Dsonar.organization=liwenbo55 \
+                          -Dsonar.projectKey=testtest1 \
+                          -Dsonar.sources=. \
+                          -Dsonar.host.url=https://sonarcloud.io
                    '''
                 }
             }    
