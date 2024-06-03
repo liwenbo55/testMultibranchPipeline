@@ -66,10 +66,11 @@ pipeline {
                    //            -Dsonar.sources=. \
                    //            -Dsonar.host.url=https://sonarcloud.io
                    // '''
-                  sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=triptribe-frontend \
-                       -Dsonar.projectName=triptribe-frontend \
-                       -Dsonar.projectVersion=1.0 \
-                       -Dsonar.sources=. '''
+                  sh '''${scannerHome}/bin/sonar-scanner \
+                       -Dsonar.projectKey=testlawrence \
+                       -Dsonar.sources=. \
+                       -Dsonar.host.url=http://3.27.123.90:9000
+                       '''
                 }
             }    
         }
