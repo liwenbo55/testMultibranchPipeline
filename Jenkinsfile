@@ -35,24 +35,45 @@ pipeline {
                 """
             }
         }
-
-        stage('SonarQube'){
-            when {
-                anyOf {
-                    branch 'dev'
-                    branch 'master'
-                }
+        stage('SonarQube Analysis') {
+            environment {
+                scannerHome = tool "SONARSCANNER"
             }
             steps {
-                withSonarQubeEnv(installationName:'sonarCloud') {
-                    sh """
-                    sonar-scanner \
-                      -Dsonar.organization=liwenbo55 \
-                      -Dsonar.sources=. \
-                      -Dsonar.projectKey= liwenbo55_testMultibranchPipeline \
-                      """
+               withSonarQubeEnv("sonarCloud") {
+                   sh '''
+                   ${scannerHome}/bin/sonar-scanner 
+                          -Dsonar.organization=liwenbo55 \
+                          -Dsonar.projectKey=testtest1 \
+                          -Dsonar.sources=.
+                   '''
                 }
             }
         }
+
+        // stage('SonarQube'){
+        //     when {
+        //         anyOf {
+        //             branch 'dev'
+        //             branch 'master'
+        //         }
+        //     }
+        //     steps {
+        //         // withSonarQubeEnv(installationName:'sonarCloud') {
+        //         //     sh """
+        //         //     sonar-scanner \
+        //         //       -Dsonar.organization=liwenbo55 \
+        //         //       -Dsonar.sources=. \
+        //         //       -Dsonar.projectKey= liwenbo55_testMultibranchPipeline \
+        //         //       """
+        //         // }
+        //         withSonarQubeEnv("${SONARSERVER}") {                    
+        //             sh '''${scannerHome}/bin/sonar-scanner 
+        //             -Dsonar.projectKey=triptribe-frontend \                    
+        //             -Dsonar.projectName=triptribe-frontend \                    
+        //             -Dsonar.projectVersion=1.0 \                    
+        //             -Dsonar.sources=src/'''                 }
+        //     }
+        // }
     }
 }
