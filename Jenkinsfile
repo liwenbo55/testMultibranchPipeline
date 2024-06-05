@@ -17,7 +17,6 @@ pipeline {
                 }
             }
         }
-
         
         stage('Checkout Code') {
             when {
@@ -35,6 +34,7 @@ pipeline {
                 """
             }
         }
+        
         stage('SonarQube Analysis') {
             environment {
                 scannerHome = tool "SonarScanner"
@@ -66,4 +66,3 @@ pipeline {
         }
     }
 }
-
