@@ -62,8 +62,7 @@ pipeline {
             //               -Dsonar.sources=. \
             //               -Dsonar.host.url=https://sonarcloud.io
             //        '''
-                }
-            }    
-        }
-    }
+        }    
+    }    
 }
+
