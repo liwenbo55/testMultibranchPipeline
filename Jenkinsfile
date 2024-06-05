@@ -52,7 +52,7 @@ pipeline {
         }
         
         stage('Quality Gate') {
-            steps{
+            steps {
                 timeout(time: 5, unit: 'MINUTES') {
                     def qg = waitForQualityGate()
                     if (qg.status != 'OK') {
