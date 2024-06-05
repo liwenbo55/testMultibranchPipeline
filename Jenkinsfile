@@ -36,39 +36,40 @@ pipeline {
             }
         }
         stage('SonarQube Analysis') {
-            steps {
-                script {
-                    scannerHome = tool "SonarScanner"
-                }
-                withSonarQubeEnv('sonarCloud') {
-                   // sh '''
-                   // ${scannerHome}/bin/sonar-scanner \
-                   //            -Dsonar.organization=liwenbo55 \
-                   //            -Dsonar.projectKey=liwenbo55_testMultibranchPipeline \
-                   //            -Dsonar.sources=. 
-                   // '''
-                   sh '''
-                   sonar-scanner \
-                              -Dsonar.organization=liwenbo55 \
-                              -Dsonar.projectKey=liwenbo55_testMultibranchPipeline \
-                              -Dsonar.sources=. 
-                   '''
-                }
-              }
-            
-            // environment {
-            //     scannerHome = tool "SONARSCANNER"
-            // }
             // steps {
-            //    withSonarQubeEnv("sonarCloud") {
-            //       sh '''
-            //           ${scannerHome}/bin/sonar-scanner \
-            //               -Dsonar.organization=liwenbo55 \
-            //               -Dsonar.projectKey=testtest1 \
-            //               -Dsonar.sources=. \
-            //               -Dsonar.host.url=https://sonarcloud.io
+            //     script {
+            //         scannerHome = tool "SonarScanner"
+            //     }
+            //     withSonarQubeEnv('sonarCloud') {
+            //        // sh '''
+            //        // ${scannerHome}/bin/sonar-scanner \
+            //        //            -Dsonar.organization=liwenbo55 \
+            //        //            -Dsonar.projectKey=liwenbo55_testMultibranchPipeline \
+            //        //            -Dsonar.sources=. 
+            //        // '''
+            //        sh '''
+            //        sonar-scanner \
+            //                   -Dsonar.organization=liwenbo55 \
+            //                   -Dsonar.projectKey=liwenbo55_testMultibranchPipeline \
+            //                   -Dsonar.sources=. 
             //        '''
+            //     }
+            //   }
+            
+            environment {
+                scannerHome = tool "SonarScanner"
+            }
+            steps {
+               withSonarQubeEnv("sonarCloud") {
+                  sh '''
+                      ${scannerHome}/bin/sonar-scanner \
+                          -Dsonar.organization=liwenbo55 \
+                          -Dsonar.projectKey=liwenbo55_testMultibranchPipeline \
+                          -Dsonar.sources=.
+                   '''
         }    
     }    
+}
+    }
 }
 
