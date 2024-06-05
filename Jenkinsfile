@@ -41,8 +41,14 @@ pipeline {
                     scannerHome = tool "SonarScanner"
                 }
                 withSonarQubeEnv('sonarCloud') {
+                   // sh '''
+                   // ${scannerHome}/bin/sonar-scanner \
+                   //            -Dsonar.organization=liwenbo55 \
+                   //            -Dsonar.projectKey=liwenbo55_testMultibranchPipeline \
+                   //            -Dsonar.sources=. 
+                   // '''
                    sh '''
-                   ${scannerHome}/bin/sonar-scanner \
+                   sonar-scanner \
                               -Dsonar.organization=liwenbo55 \
                               -Dsonar.projectKey=liwenbo55_testMultibranchPipeline \
                               -Dsonar.sources=. 
